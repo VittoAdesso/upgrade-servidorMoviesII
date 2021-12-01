@@ -124,7 +124,7 @@ router.put('/:id', (req, res, next) => {
     const nuevaMovie = new Movies(req.body); // le paso el body entero (ésto es lo mismo que hice arriba, simplificando)
     //asign a éste nueva movie, el id de la movie modificada 
     nuevaMovie._id = movieID;
-    Movies.findByIdAndUpdate(movieID, nuevaMovie)
+    Movies.findByIdAndUpdate(movieID, nuevaMovie, { new: true }) // con new true eso me ayuda que me muestre postman o url las modificaciones actualizads
         .then(movieActualizada => {
             res.status(200).json(movieActualizada);
         })
