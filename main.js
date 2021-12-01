@@ -25,13 +25,14 @@ server.use('*', (req, res, next) => {
     error.status = 404; // (control de errores)
     next(error); //(control de errores)
 });
+
 //middleware para llevar el caso de arriba (control de errores)
 server.use((err, req, res, next) => {
     return res.status(err.status || 500).json(err.message || 'Ha ocurrido un error en el servidor');
-})
+});
 
 
 //arranco el servidor
 server.listen(PORT, () => {
     console.log(`Sevidor arrancado en el puerto ${PORT}`);
-})
+});
