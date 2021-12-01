@@ -4,6 +4,8 @@ require('./db/data-base');
 // defino const express y la requiero, que me la llame
 const express = require('express');
 const moviesRouter = require('./router/movies.router');
+const cinemaRouter = require('./router/cinema.router');
+
 const server = express();
 //defino el puerto
 const PORT = 3000;
@@ -11,8 +13,11 @@ const PORT = 3000;
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
-// comienzo a crear enrutado
+// comienzo a crear enrutado o middelware que me lea la carpeta de rutas 
 server.use('/movies', moviesRouter); // le digo al servidor que use la contsante que requiere el archivo que he creado
+
+// comienzo a crear enrutado o middelware de enrutado y que me lea la carpeta de rutas 
+server.use('/cinema', cinemaRouter); // le digo al servidor que use la contsante que requiere el archivo que he creado
 
 // cualuqier ruta, que me de el error
 server.use('*', (req, res, next) => {
